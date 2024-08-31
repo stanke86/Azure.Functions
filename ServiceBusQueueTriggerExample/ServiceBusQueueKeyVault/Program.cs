@@ -14,7 +14,6 @@ var host = new HostBuilder()
             builder.AddUserSecrets<Program>();
         }
 
-        // builder.AddEnvironmentVariables();
 
         // You might need this depending on your local dev environment
         var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions { ExcludeSharedTokenCacheCredential = true });
