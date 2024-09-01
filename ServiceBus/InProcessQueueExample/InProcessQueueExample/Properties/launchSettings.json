@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "QueueExample": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7053",
-      "launchBrowser": false
-    }
-  }
-}

@@ -5,14 +5,16 @@
 ## Projects List
 ### .NET 8
 - HttpTriggerExample01 - HttpTrigger binding example.
-
+- ServiceBusQueueTriggerExample - A Service Bus queue example 
+   - It also demonstrates how to hook up Key Vault locally
+   - It has some code, still broken, to hook up app configuration locally.  There is an issue with the local.setting.json syntax.
+   
 ### Still .NET 6  (in progress.....)
 - Common
    - AppInsightsEnhancedWithSerilogSink - A Serilog example that I was using for common logging (TODO: it needs work)
 - Durable - durable function examples
 - Event Hub - Azure functions with event hub trigger
 - Powershell - PowerShell in Azure Function examples
-- Service Bus - Azure functions with service bus trigger (queue or topic)
 
 ## Branching scheme
 - [DotNet8](https://github.com/madcodemonkey/Azure.Functions/tree/DotNet8): .NET 8.0 examples

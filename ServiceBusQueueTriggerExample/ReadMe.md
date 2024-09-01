@@ -45,6 +45,7 @@ This sample uses the key vault to hold the connection string for the service bus
 3. AZURE_TENANT_ID - update to your tenant id.  You'll find that under "Microsoft Entra ID" and the "Overview" tab.
    - This is mainly for the cases where you have access to more than one tenant.  If this is the case, also make sure that you are logged 
 	 into that tenant in Visual Studio as well; otherwise, you will get an error in the program.cs about credentials.
+      - Error: "No key vault credential or secret resolver callback configured, and no matching secret client could be found."
 
 Notes
    - Warning! Do not use vault syntax in your secrets.json thinking it will override your local.settings.json setting and pull values from vault.
