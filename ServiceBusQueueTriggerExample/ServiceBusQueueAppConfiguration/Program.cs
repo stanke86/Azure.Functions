@@ -24,11 +24,13 @@ var host = new HostBuilder()
         {
             builder.AddAzureAppConfiguration(options =>
             {
-                options.Connect(new Uri(azureAppConfigurationEndpoint), credential)
-                    .ConfigureKeyVault(kv =>
-                    {
-                        kv.SetCredential(credential);
-                    });
+                // Key Vault access: https://learn.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core?tabs=core5x#update-your-code-to-use-a-key-vault-reference
+                options.Connect(new Uri(azureAppConfigurationEndpoint), credential);
+
+                options.ConfigureKeyVault(keyVaultOptions =>
+                  {
+                      keyVaultOptions.SetCredential(credential);
+                  });
             });
         }
     })

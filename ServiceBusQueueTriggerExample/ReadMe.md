@@ -49,11 +49,15 @@ This sample uses the key vault to hold the connection string for the service bus
 Notes
    - Warning! Do not use vault syntax in your secrets.json thinking it will override your local.settings.json setting and pull values from vault.
 	 What it appears to do is just a string replacement and NOT a retrieval from vault.  See https://stackoverflow.com/a/76778244/97803 
+
 ---
 ---
 ---
 # ServiceBusQueueAppConfiguration setup
 This sample uses the App Configuration locally and key vault to hold the connection string for the service bus.
+
+The "@Microsoft.AppConfiguration(E..." syntax currently does NOT currently work locally; however, it works in Azure.
+- Issue: https://github.com/Azure/AppConfiguration/issues/863
 
 ## Create a Key Vault
 1. Create a key vault
@@ -64,11 +68,18 @@ This sample uses the App Configuration locally and key vault to hold the connect
 
 ## Azure App Configuration changes you need to make
 1. You'll need to create a managed identity for your App Configuration.
+   - You can do this under Settings > Identity by switching the "Status" to "On" and saving.
 2. You'll have to give that managed identity permission to access your key vault
-3. You'll need to give yourself "App Configuration Data Reader" permission to access the App Configuration for this to work.  
-   This is done under "Access Policies"
-4. You'll have to add secrets from your key vault via the "Configuration Explorer" Create button (you can create a ""key-value"" or "key vault reference")
+   - Give it the "Key Vault Reader" role	 
+3. According to [Granting your app access to App Configuration](https://learn.microsoft.com/en-us/azure/app-service/app-service-configuration-references#granting-your-app-access-to-app-configuration),
+   you need to assign the new managed identity the "App Configuration Data Reader" role to this identity, scoped over the resource.
+4. You'll need to give yourself "App Configuration Data Reader" permission to access the App Configuration for this to work.  
+   This is done under "Access Control (IAM)"
+5. You'll have to add secrets from your key vault via the "Configuration Explorer" Create button (you can create a "key-value" or "key vault reference")
+   - I created a "key vault reference" that references the latest "ServiceBusConnectionString" secret and called the key "SerBusConStr"
 
+Notes
+- Syntax:  https://learn.microsoft.com/en-us/azure/app-service/app-service-configuration-references
 
 ## local.settings.json changes you need to make
 1. ServiceBus:ConnectionString - update with the ???? syntax to point to your app configuration
